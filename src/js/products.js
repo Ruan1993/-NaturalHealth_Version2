@@ -2,38 +2,33 @@ import * as THREE from 'three';
 import { AISLE_CONFIG, PRODUCTS } from './data.js';
 import { clamp, lerp } from './helpers.js';
 
-const geometries = {
-  bottle: new THREE.CylinderGeometry(0.16, 0.19, 0.67, 10),
-  box: new THREE.BoxGeometry(0.36, 0.54, 0.19)
-};
+const bottleGeometry = new THREE.CylinderGeometry(0.16, 0.19, 0.67, 12);
+const labelGeometry = new THREE.BoxGeometry(0.014, 0.14, 0.27);
+const capGeometry = new THREE.CylinderGeometry(0.1, 0.1, 0.09, 12);
 const smoothstep = (start, end, value) => {
   const normalized = clamp((value - start) / (end - start), 0, 1);
   return normalized * normalized * (3 - 2 * normalized);
 };
 
-function createProductMaterial(color) {
-  return new THREE.MeshStandardMaterial({ color, roughness: 0.38, metalness: 0.02, emissive: new THREE.Color(color), emissiveIntensity: 0 });
+function createBottleMaterial(color) {
+  return new THREE.MeshPhysicalMaterial({ color, roughness: 0.16, metalness: 0, transmission: 0.18, thickness: 0.12, transparent: true, opacity: 0.66, emissive: new THREE.Color(color), emissiveIntensity: 0 });
 }
 
 function createProduct(product, side, level, z, offset = 0) {
   const group = new THREE.Group();
-  const geometry = geometries[product.format];
-  const material = createProductMaterial(product.palette);
-  const body = new THREE.Mesh(geometry, material);
-  const isBottle = product.format === 'bottle';
-  body.position.y = isBottle ? geometry.parameters.height / 2 : 0.3;
+  const material = createBottleMaterial(product.palette);
+  const body = new THREE.Mesh(bottleGeometry, material);
+  body.position.y = bottleGeometry.parameters.height / 2;
   group.add(body);
-  const label = new THREE.Mesh(new THREE.BoxGeometry(isBottle ? 0.27 : 0.3, 0.14, 0.012), new THREE.MeshStandardMaterial({ color: '#f8f5ec', roughness: 0.72 }));
-  label.position.set(-side * (isBottle ? 0.17 : 0.102), body.position.y, 0.11);
+  const label = new THREE.Mesh(labelGeometry, new THREE.MeshStandardMaterial({ color: '#f8f5ec', roughness: 0.72 }));
+  label.position.set(-side * 0.17, body.position.y, 0);
   group.add(label);
-  if (isBottle) {
-    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.09, 10), new THREE.MeshStandardMaterial({ color: '#d4bf9c', roughness: 0.35, metalness: 0.22 }));
-    cap.position.y = body.position.y + geometry.parameters.height / 2 + 0.045;
-    group.add(cap);
-  }
-  group.position.set(side * (AISLE_CONFIG.shelfFront - 0.2 - Math.abs(offset) * 0.12), AISLE_CONFIG.shelfLevels[level] + 0.09, z + offset);
+  const cap = new THREE.Mesh(capGeometry, new THREE.MeshStandardMaterial({ color: product.capPalette, roughness: 0.3, metalness: 0.12 }));
+  cap.position.y = body.position.y + bottleGeometry.parameters.height / 2 + 0.045;
+  group.add(cap);
+  group.position.set(side * (AISLE_CONFIG.shelfFront + 0.28 + Math.abs(offset) * 0.035), AISLE_CONFIG.shelfLevels[level] + 0.09, z + offset);
   group.rotation.y = side * 0.045;
-  group.userData = { product, material, baseY: group.position.y, focus: 0 };
+  group.userData = { product, material, baseY: group.position.y };
   return group;
 }
 
