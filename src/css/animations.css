@@ -1,0 +1,1 @@
+@media (prefers-reduced-motion: no-preference) { .eyebrow span { animation: glow 2.5s ease-in-out infinite; } @keyframes glow { 50% { box-shadow: 0 0 6px #d4bb87; opacity: .65; } } }

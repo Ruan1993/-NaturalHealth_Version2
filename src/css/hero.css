@@ -1,0 +1,1 @@
+.hero::before { position: absolute; z-index: -1; inset: 0; content: ''; background: radial-gradient(ellipse 55% 44% at 50% 48%, transparent 0%, rgba(7,21,16,.18) 66%, rgba(7,21,16,.72) 100%); }
