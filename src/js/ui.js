@@ -8,6 +8,8 @@ export function createUI({ onAddToCart }) {
   const heroCopy = document.querySelector('.hero-copy');
   const heroNote = document.querySelector('.hero-note');
   const spotlight = document.querySelector('#product-spotlight');
+  const app = document.querySelector('#app');
+  const hero = document.querySelector('.hero');
   const category = document.querySelector('#spotlight-category');
   const name = document.querySelector('#spotlight-name');
   const description = document.querySelector('#spotlight-description');
@@ -17,15 +19,17 @@ export function createUI({ onAddToCart }) {
   let activeProduct = null;
   addButton.addEventListener('click', () => { if (activeProduct) onAddToCart(activeProduct); });
   return {
+    setStoreState(state) { app.dataset.storeState = state; if (state === 'shopping') hero.hidden = true; },
     setProgress(progress) {
       const index = Math.min(PRODUCTS.length - 1, Math.floor(progress * PRODUCTS.length));
       const percentage = Math.round(progress * 100);
-      const heroExit = Math.min(progress / 0.05, 1);
+      const heroExit = Math.min(progress / 0.03, 1);
       const heroOpacity = 1 - heroExit * heroExit * (3 - 2 * heroExit);
       fill.style.width = `${percentage}%`;
       track.setAttribute('aria-valuenow', String(percentage));
       label.textContent = progress < 0.025 ? 'Entrance' : PRODUCTS[index].name;
       count.textContent = `${Math.min(PRODUCTS.length, Math.ceil(progress * PRODUCTS.length))} of ${PRODUCTS.length}`;
+      app.classList.toggle('has-walked', progress > .02);
       heroCopy.style.opacity = heroOpacity.toFixed(3);
       heroCopy.style.transform = `translate3d(0, ${-heroExit * 42}px, 0)`;
       heroCopy.style.pointerEvents = heroExit > 0.92 ? 'none' : 'auto';

@@ -3,7 +3,7 @@ export const AISLE_CONFIG = {
   bayDepth: 7.5,
   bayCount: 10,
   baySpacing: 9.6,
-  entranceBayZ: -2,
+  entranceBayZ: -3,
   shelfLevels: [0.72, 1.78, 2.84, 3.9],
   shelfFront: 4.55,
   shelfCentre: 5.78
@@ -31,3 +31,13 @@ export const AISLE_CATALOG = [
 ];
 
 export const PRODUCTS = AISLE_CATALOG.flatMap(({ category, products }) => products.map((product) => ({ ...product, category })));
+
+export const SHELF_STOCK = [
+  { id: 'spring-water-stock', category: 'Water', name: 'Spring Water', price: 'R28', description: 'Pure still spring water.', palette: '#9dcee1', capPalette: '#3e819d', format: 'glass-bottle' },
+  { id: 'botanical-water-stock', category: 'Water', name: 'Botanical Water', price: 'R35', description: 'A softly infused botanical water.', palette: '#a8d8c4', capPalette: '#4c8a71', format: 'glass-bottle' },
+  { id: 'daily-minerals-stock', category: 'Supplements', name: 'Daily Minerals', price: 'R189', description: 'A clean daily mineral blend.', palette: '#d4c7a3', capPalette: '#587860', format: 'supplement-tub' },
+  { id: 'garden-tea-stock', category: 'Tea', name: 'Garden Tea', price: 'R96', description: 'Organic garden herb tea.', palette: '#8ead80', capPalette: '#5e7d51', format: 'tea-box' },
+  { id: 'wildflower-honey-stock', category: 'Pantry', name: 'Wildflower Honey', price: 'R154', description: 'Small-batch wildflower honey.', palette: '#d6aa4f', capPalette: '#9e7631', format: 'honey-jar' },
+  { id: 'lavender-oil-stock', category: 'Essential oils', name: 'Lavender Oil', price: 'R112', description: 'Pure lavender essential oil.', palette: '#8a94ae', capPalette: '#584f69', format: 'essential-oil' },
+  { id: 'organic-greens-stock', category: 'Organic foods', name: 'Organic Greens', price: 'R118', description: 'A nourishing organic greens blend.', palette: '#86a675', capPalette: '#547449', format: 'organic-pouch' }
+];

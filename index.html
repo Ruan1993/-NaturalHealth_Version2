@@ -1,55 +1,15 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#10271e" />
-    <meta name="description" content="A quiet, immersive way to discover natural health." />
-    <title>Natural Health — Virtual Mall</title>
-  </head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#10271e" /><meta name="description" content="@Natural Health — fresh living from the heart of the Overberg." /><title>@Natural Health — Virtual Mall</title></head>
   <body>
-    <div id="app">
-      <canvas id="experience" aria-label="Natural Health virtual store environment"></canvas>
-
-      <header class="site-header glass-panel">
-        <a class="brand" href="#top" aria-label="Natural Health home"><span class="brand-mark">N</span><span>Natural Health</span></a>
-        <nav class="desktop-nav" aria-label="Primary navigation"><a href="#top">Discover</a><a href="#experience-section">The store</a><button class="icon-button" type="button" aria-label="Open shopping bag"><span aria-hidden="true">Bag</span><b id="cart-count">0</b></button></nav>
-      </header>
-
-      <main id="top">
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span></span> The virtual wellness market</p>
-            <h1 id="hero-title">A more <em>natural</em><br />way to wander.</h1>
-            <p class="hero-description">Step into a softly lit store made for slow discovery. Every aisle begins with a better feeling.</p>
-            <a class="primary-button" href="#experience-section">Enter the market <span aria-hidden="true">↓</span></a>
-          </div>
-          <p class="hero-note">Scroll to begin an unhurried walk</p>
-        </section>
-
-        <section id="experience-section" class="experience-section" aria-label="Walk through the market">
-          <div class="experience-copy"><p class="eyebrow"><span></span> Aisle one</p><h2>The everyday, elevated.</h2><p>Designed as a living store, with warmth in every material and room to breathe between every choice.</p></div>
-        </section>
-      </main>
-
-      <aside class="store-controls" aria-label="Store controls">
-        <button class="circle-button glass-panel" type="button" aria-label="Search the store"><span aria-hidden="true">⌕</span></button>
-        <button class="circle-button glass-panel" type="button" aria-label="Open store map"><span aria-hidden="true">⌘</span></button>
-      </aside>
-
-      <aside id="product-spotlight" class="product-spotlight glass-panel" aria-live="polite" aria-label="Product details">
-        <p id="spotlight-category" class="spotlight-category"></p>
-        <h3 id="spotlight-name"></h3>
-        <p id="spotlight-description"></p>
-        <div class="spotlight-footer"><strong id="spotlight-price"></strong><button id="spotlight-add" type="button">Add to cart <span aria-hidden="true">+</span></button></div>
-      </aside>
-
-      <footer class="walk-progress glass-panel" aria-label="Walking progress">
-        <div class="progress-leading"><span class="down-arrow" aria-hidden="true">↓</span><span>Walk forward</span></div>
-        <div class="progress-track" role="progressbar" aria-label="Store journey" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
-        <p><span id="progress-label">Entrance</span><span id="progress-count">0 of 18</span></p>
-      </footer>
-    </div>
-    <script type="module" src="/src/js/main.js"></script>
+    <div id="app" data-store-state="entrance">
+      <canvas id="experience" aria-label="@Natural Health virtual store environment"></canvas>
+      <header class="site-header glass-panel"><a class="brand" href="#top" aria-label="@Natural Health home"><img src="/images/NATURAL HEALTH LOGO.png" alt="@Natural Health" /></a><nav class="desktop-nav" aria-label="Primary navigation"><button id="explore-store" class="nav-explore" type="button">Explore the Store</button><a href="#experience-section">The store</a><button class="icon-button" type="button" aria-label="Open shopping bag"><span aria-hidden="true">Bag</span><b id="cart-count">0</b></button></nav></header>
+      <main id="top"><section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><h1 id="hero-title" class="sr-only">@Natural Health</h1></div><section id="entrance-ui" class="entrance-ui" aria-label="@Natural Health store entrance"><button id="door-open-accessible" class="sr-only" type="button" aria-label="Open @Natural Health store doors">Open @Natural Health store doors</button><p class="handle-label"><span class="desktop-copy">Click anywhere to open</span><span class="mobile-copy">Tap anywhere to open</span></p><p class="hero-note"><span class="desktop-copy"><b aria-hidden="true">↓</b> Scroll to enter</span><span class="mobile-copy"><b aria-hidden="true">↑</b> Swipe to enter</span></p></section></section><section id="experience-section" class="experience-section" aria-label="Walk through the market"></section></main>
+      <aside class="walking-guide" aria-label="Store walking guide"><span class="desktop-copy">Scroll to walk<br />↓<br />Use ↑ ↓ to browse products</span><span class="mobile-copy">Swipe / scroll to walk</span></aside>
+      <aside class="store-controls" aria-label="Store controls"><button class="circle-button glass-panel" type="button" aria-label="Search the store"><span aria-hidden="true">⌕</span></button><button class="circle-button glass-panel" type="button" aria-label="Open store map"><span aria-hidden="true">⌘</span></button></aside>
+      <aside id="product-spotlight" class="product-spotlight glass-panel" aria-live="polite" aria-label="Product details"><p id="spotlight-category" class="spotlight-category"></p><h3 id="spotlight-name"></h3><p id="spotlight-description"></p><div class="spotlight-footer"><strong id="spotlight-price"></strong><button id="spotlight-add" type="button">Add to cart <span aria-hidden="true">+</span></button></div></aside>
+      <footer class="walk-progress glass-panel" aria-label="Walking progress"><div class="progress-leading"><span class="down-arrow" aria-hidden="true">↓</span><span>Walk forward</span></div><div class="progress-track" role="progressbar" aria-label="Store journey" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div><p><span id="progress-label">Entrance</span><span id="progress-count">0 of 10</span></p></footer>
+    </div><script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
