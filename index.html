@@ -37,6 +37,13 @@
         <button class="circle-button glass-panel" type="button" aria-label="Open store map"><span aria-hidden="true">⌘</span></button>
       </aside>
 
+      <aside id="product-spotlight" class="product-spotlight glass-panel" aria-live="polite" aria-label="Product details">
+        <p id="spotlight-category" class="spotlight-category"></p>
+        <h3 id="spotlight-name"></h3>
+        <p id="spotlight-description"></p>
+        <div class="spotlight-footer"><strong id="spotlight-price"></strong><button id="spotlight-add" type="button">Add to cart <span aria-hidden="true">+</span></button></div>
+      </aside>
+
       <footer class="walk-progress glass-panel" aria-label="Walking progress">
         <div class="progress-leading"><span class="down-arrow" aria-hidden="true">↓</span><span>Walk forward</span></div>
         <div class="progress-track" role="progressbar" aria-label="Store journey" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
